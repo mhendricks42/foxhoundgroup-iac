@@ -51,10 +51,10 @@ remote_state {
     backend = "azurerm"
     config = {
         subscription_id = "${local.subscription_id}"
-        key = "${path_relative_to_include()}/terraform.tfstate"
-        resource_group_name = "rg-terragrunt-example-001"
-        storage_account_name = "stterragruntexample001"
-        container_name = "environment-states"
+        key = "terraform.tfstate"
+        resource_group_name = "fhg-deployment"
+        storage_account_name = "fhgdeploystore"
+        container_name = "terraform-state"
     }
     generate = {
         path      = "backend.tf"
