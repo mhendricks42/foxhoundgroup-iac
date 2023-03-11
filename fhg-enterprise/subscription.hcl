@@ -1,3 +1,3 @@
 locals {
-    subscription_id = "beaebfa6-a50f-4e87-bfec-e51da986ab7d"
+    subscription_id = "1805c128-fe2b-4459-a732-dfe1a29df011"
 }
