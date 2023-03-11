@@ -3,5 +3,5 @@ include {
 }
 
 inputs = {
-  vnet_resource_group_name = "rg-example-vnet"
+  vnet_resource_group_name = "fhg-example-vnet"
 }
