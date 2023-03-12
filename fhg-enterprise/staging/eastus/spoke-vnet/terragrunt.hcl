@@ -1,5 +1,5 @@
 terraform {
-  source = "${get_parent_terragrunt_dir()}/modules//vnet"
+  source = "${get_parent_terragrunt_dir()}/modules//azure-vnet"
 }
 
 include {
@@ -33,12 +33,25 @@ inputs = {
   resource_group_name     = dependency.resource_groups.outputs.vnet_resource_group_name
   resource_group_location = local.location
   vnet_address_space      = ["10.0.0.0/16"]
-  subnet_prefixes     	  = ["10.0.1.0/26", "10.0.2.0/24", "10.0.3.0/24", "10.0.4.0/24"]
-  subnet_names            = ["AzureBastionSubnet", "Management", "Tools", "Workloads"]
   subnets = {
     subnet1 = {
       name                      = "AzureBastionSubnet"
       address_prefix            = "10.0.1.0/26"
+      security_group            = dependency.nsg.outputs.nsg_name
+    },
+    subnet2 = {
+      name                      = "Management"
+      address_prefix            = "10.0.2.0/24"
+      security_group            = dependency.nsg.outputs.nsg_name
+    },
+    subnet3 = {
+      name                      = "Tools"
+      address_prefix            = "10.0.3.0/24"
+      security_group            = dependency.nsg.outputs.nsg_name
+    },
+    subnet4 = {
+      name                      = "Workloads"
+      address_prefix            = "10.0.4.0/24"
       security_group            = dependency.nsg.outputs.nsg_name
     }
   }

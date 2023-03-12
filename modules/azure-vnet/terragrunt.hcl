@@ -15,15 +15,11 @@ inputs = {
       name                      = "subnet1"
       address_prefix            = "10.0.1.0/24"
       security_group            = "my-subnet1-nsg"
-      route_table               = "my-subnet1-route-table"
-      enforce_private_link_service_network_policies = true
     },
     subnet2 = {
       name                      = "subnet2"
       address_prefix            = "10.0.2.0/24"
       security_group            = "my-subnet2-nsg"
-      route_table               = "my-subnet2-route-table"
-      enforce_private_link_service_network_policies = false
     }
   }
 }
