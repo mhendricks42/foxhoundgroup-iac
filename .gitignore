@@ -2,3 +2,17 @@
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
+.*.sw?
+.idea
+terragrunt.iml
+vendor
+.terraform
+.vscode
+*.tfstate
+*.tfstate.backup
+*.out
+.terragrunt-cache
+.bundle
+.ruby-version
+.terraform.lock.hcl
+terragrunt
