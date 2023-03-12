@@ -1,14 +1,30 @@
 # example hcl
-terraform {
-  source = "../vnet/"
+# Include the Azure VNet module
+include {
+  path = "../modules/networking/vnet"
 }
 
+# Set input variables for the Azure VNet module
 inputs = {
-  resource_group_name    = "my-resource-group"
-  resource_group_location = "eastus"
-  vnet_name              = "my-vnet"
-  address_space          = ["10.0.0.0/16"]
-  subnet_name            = "my-subnet"
-  subnet_prefix          = "10.0.1.0/24"
+  resource_group_name       = "my-resource-group"
+  resource_group_location   = "eastus"
+  vnet_name                 = "my-vnet"
+  vnet_address_space        = ["10.0.0.0/16"]
+  subnets = {
+    subnet1 = {
+      name                      = "subnet1"
+      address_prefix            = "10.0.1.0/24"
+      security_group            = "my-subnet1-nsg"
+      route_table               = "my-subnet1-route-table"
+      enforce_private_link_service_network_policies = true
+    },
+    subnet2 = {
+      name                      = "subnet2"
+      address_prefix            = "10.0.2.0/24"
+      security_group            = "my-subnet2-nsg"
+      route_table               = "my-subnet2-route-table"
+      enforce_private_link_service_network_policies = false
+    }
+  }
 }
 

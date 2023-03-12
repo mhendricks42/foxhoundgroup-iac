@@ -1,5 +1,5 @@
 terraform {
-  source = "tfr:///Azure/vnet/azurerm//?version=4.0.0"
+  source = "${get_parent_terragrunt_dir()}/modules//vnet"
 }
 
 include {
@@ -29,15 +29,20 @@ locals {
 }
 
 inputs = {
-  vnet_name           = "vnet-spoke-${local.environment}-${local.location}-001"
-  resource_group_name = dependency.resource_groups.outputs.vnet_resource_group_name
-  address_space       = ["10.0.0.0/16"]
-  subnet_prefixes     = ["10.0.1.0/26", "10.0.2.0/24", "10.0.3.0/24", "10.0.4.0/24"]
-  subnet_names        = ["AzureBastionSubnet", "Management", "Tools", "Workloads"]
-  vnet_location       = local.location
-  use_for_each        = false
-
-  tags = {
-    environment = local.environment
+  vnet_name               = "vnet-spoke-${local.environment}-${local.location}-001"
+  resource_group_name     = dependency.resource_groups.outputs.vnet_resource_group_name
+  resource_group_location = local.location
+  vnet_address_space      = ["10.0.0.0/16"]
+  subnet_prefixes     	  = ["10.0.1.0/26", "10.0.2.0/24", "10.0.3.0/24", "10.0.4.0/24"]
+  subnet_names            = ["AzureBastionSubnet", "Management", "Tools", "Workloads"]
+  subnets = {
+    subnet1 = {
+      name                      = "Azure"
+      address_prefix            = "10.0.1.0/24"
+      security_group            = "my-subnet1-nsg"
+      route_table               = "my-subnet1-route-table"
+      enforce_private_link_service_network_policies = true
+      };
+    }
   }
 }

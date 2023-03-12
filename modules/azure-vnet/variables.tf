@@ -1,30 +1,31 @@
 variable "resource_group_name" {
   type        = string
-  description = "The name of the resource group to create the VNet in."
+  description = "The name of the resource group to deploy the VNet into"
 }
 
 variable "resource_group_location" {
   type        = string
-  description = "The location to create the resource group and VNet in."
+  description = "The location of the resource group to deploy the VNet into"
 }
 
 variable "vnet_name" {
   type        = string
-  description = "The name of the VNet to create."
+  description = "The name of the Virtual Network"
 }
 
-variable "address_space" {
+variable "vnet_address_space" {
   type        = list(string)
-  description = "The address space to use for the VNet."
+  description = "The address space of the Virtual Network"
 }
 
-variable "subnet_name" {
-  type        = string
-  description = "The name of the subnet to create."
-}
-
-variable "subnet_prefix" {
-  type        = string
-  description = "The address prefix to use for the subnet."
+variable "subnets" {
+  type = map(object({
+    name                      = string
+    address_prefix            = string
+    security_group            = string
+    route_table               = string
+    enforce_private_link_service_network_policies = bool
+  }))
+  description = "A map of subnet configurations"
 }
 
