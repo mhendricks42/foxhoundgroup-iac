@@ -20,6 +20,16 @@ dependency "resource_groups" {
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
 }
 
+dependency "nsg" {
+  config_path = "../nsg"
+
+  mock_outputs = {
+    vnet_resource_group_name = "nsg-terragrunt-mock-001"
+  }
+  mock_outputs_merge_strategy_with_state = true
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
+}
+
 locals {
   env_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   environment = local.env_vars.locals.environment
