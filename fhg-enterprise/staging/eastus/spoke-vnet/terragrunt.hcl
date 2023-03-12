@@ -17,6 +17,7 @@ dependency "resource_groups" {
     vnet_resource_group_name = "rg-terragrunt-mock-001"
   }
   mock_outputs_merge_with_state = true
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
 }
 
 locals {
