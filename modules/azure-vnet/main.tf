@@ -18,8 +18,6 @@ resource "azurerm_virtual_network" "vnet" {
       name                      = subnet.value.name
       address_prefix            = subnet.value.address_prefix
       security_group            = subnet.value.security_group
-      route_table               = subnet.value.route_table
-      enforce_private_link_service_network_policies = subnet.value.enforce_private_link_service_network_policies
     }
   }
 }

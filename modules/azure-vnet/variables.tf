@@ -23,8 +23,6 @@ variable "subnets" {
     name                      = string
     address_prefix            = string
     security_group            = string
-    route_table               = string
-    enforce_private_link_service_network_policies = bool
   }))
   description = "A map of subnet configurations"
 }

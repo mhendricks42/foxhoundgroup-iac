@@ -18,6 +18,7 @@ resource "azurerm_network_security_rule" "nsg_rule" {
   protocol                    = var.security_rules[count.index].protocol
   source_port_range           = var.security_rules[count.index].source_port_range
   destination_port_range      = var.security_rules[count.index].destination_port_range
+  destination_port_ranges      = var.security_rules[count.index].destination_port_ranges
   source_address_prefix       = var.security_rules[count.index].source_address_prefix
   destination_address_prefix  = var.security_rules[count.index].destination_address_prefix
   resource_group_name         = var.resource_group_name

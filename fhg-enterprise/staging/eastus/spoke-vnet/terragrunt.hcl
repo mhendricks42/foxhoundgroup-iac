@@ -7,7 +7,7 @@ include {
 }
 
 dependencies {
-  paths = ["../../global/resource_groups"]
+  paths = ["../../global/resource_groups", "../nsg"]
 }
 
 dependency "resource_groups" {
@@ -29,7 +29,7 @@ locals {
 }
 
 inputs = {
-  vnet_name               = "vnet-spoke-${local.environment}-${local.location}-001"
+  vnet_name               = "${local.environment}-${local.location}-vnet-spoke-001"
   resource_group_name     = dependency.resource_groups.outputs.vnet_resource_group_name
   resource_group_location = local.location
   vnet_address_space      = ["10.0.0.0/16"]
@@ -37,12 +37,9 @@ inputs = {
   subnet_names            = ["AzureBastionSubnet", "Management", "Tools", "Workloads"]
   subnets = {
     subnet1 = {
-      name                      = "Azure"
-      address_prefix            = "10.0.1.0/24"
-      security_group            = "my-subnet1-nsg"
-      route_table               = "my-subnet1-route-table"
-      enforce_private_link_service_network_policies = true
-      };
+      name                      = "AzureBastionSubnet"
+      address_prefix            = "10.0.1.0/26"
+      security_group            = dependency.nsg.outputs.nsg_name
     }
   }
 }

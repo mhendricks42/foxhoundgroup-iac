@@ -1,35 +1,49 @@
-# example hcl
 terraform {
-  source = "git::https://github.com/example/terraform-azure-nsg.git//"
+  source = "${get_parent_terragrunt_dir()}/modules//nsg"
+}
+
+include {
+  path = find_in_parent_folders()
+}
+
+dependencies {
+  paths = ["../../global/resource_groups"]
+}
+
+dependency "resource_groups" {
+  config_path = "../../global/resource_groups"
+
+  mock_outputs = {
+    vnet_resource_group_name = "rg-terragrunt-mock-001"
+  }
+  mock_outputs_merge_strategy_with_state = true
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
+}
+
+locals {
+  env_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  environment = local.env_vars.locals.environment
+
+  region_vars = read_terragrunt_config(find_in_parent_folders("region.hcl"))
+  location = local.region_vars.locals.location
 }
 
 inputs = {
-  name               = "example-nsg"
-  location           = "eastus"
-  resource_group_name = "example-rg"
+  name               = "${local.environment}-${local.location}-nsg-001"
+  location           = local.location
+  resource_group_name = dependency.resource_groups.outputs.vnet_resource_group_name
   security_rules = [
     {
-      name                        = "rule1"
+      name                        = "DenyRemoteManagementInBound"
       priority                    = 100
       direction                   = "Inbound"
-      access                      = "Allow"
-      protocol                    = "Tcp"
+      access                      = "Deny"
+      protocol                    = "*"
       source_port_range           = "*"
-      destination_port_range      = "80"
+      destination_port_ranges     = ["22","3389","5985","5986"]
       source_address_prefix       = "*"
       destination_address_prefix  = "*"
-    },
-    {
-      name                        = "rule2"
-      priority                    = 200
-      direction                   = "Outbound"
-      access                      = "Allow"
-      protocol                    = "Tcp"
-      source_port_range           = "*"
-      destination_port_range      = "443"
-      source_address_prefix       = "*"
-      destination_address_prefix  = "*"
-    },
+    }
   ]
 }
 
