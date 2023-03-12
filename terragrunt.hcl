@@ -28,11 +28,11 @@ generate "versions" {
       required_providers {
         azurerm = {
           source = "hashicorp/azurerm"
-          version = "2.95.0"
+          version = "3.47.0"
         }
         azuread = {
             source = "hashicorp/azuread"
-            version = "2.18.0"
+            version = "2.36.0"
         }
       }
     }
