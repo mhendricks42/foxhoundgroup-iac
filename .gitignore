@@ -16,3 +16,5 @@ vendor
 .ruby-version
 .terraform.lock.hcl
 terragrunt
+backend.tf
+versions_override.tf
