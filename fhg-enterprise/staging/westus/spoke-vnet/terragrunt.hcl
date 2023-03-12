@@ -1,5 +1,5 @@
 terraform {
-  source = "tfr:///Azure/vnet/azurerm//?version=2.6.0"
+  source = "tfr:///Azure/vnet/azurerm//?version=4.0.0"
 }
 
 include {
@@ -16,7 +16,7 @@ dependency "resource_groups" {
   mock_outputs = {
     vnet_resource_group_name = "rg-terragrunt-mock-001"
   }
-  mock_outputs_merge_with_state = true
+  mock_outputs_merge_strategy_with_state = true
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
 }
 
