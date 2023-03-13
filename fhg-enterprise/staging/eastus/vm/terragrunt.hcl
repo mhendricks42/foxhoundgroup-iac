@@ -42,7 +42,7 @@ inputs = {
   resource_group_name   = dependency.resource_groups.outputs.resource_group_name
   location              = local.location
   vnet_name             = dependency.spoke_vnet.outputs.vnet_name
-  subnet_name           = dependency.spoke_vnet.outputs.vnet_name
+  subnet_id             = dependency.spoke_vnet.outputs.vnet.subnet.id[1]
   public_ip_name        = "my-public-ip"
   nic_name              = "my-nic"
   vm_name               = "my-vm"
@@ -53,6 +53,5 @@ inputs = {
   image_sku             = "18.04-LTS"
   image_version         = "latest"
   admin_username        = "my-username"
-  admin_password        = var.vm_password
 }
 
