@@ -47,16 +47,15 @@ inputs = {
   location              = local.location
   vnet_name             = dependency.spoke_vnet.outputs.vnet_name
   subnet_id             = dependency.spoke_vnet.outputs.subnet_ids[1]
-  public_ip_name        = "my-public-ip"
-  nic_name              = "my-nic"
-  vm_name               = "my-${basename(get_terragrunt_dir())}"
-  vm_size               = "Standard_D2s_v3"
-  os_disk_name          = "my-os-disk"
+  public_ip_name        = "${basename(get_terragrunt_dir())}-public-ip"
+  nic_name              = "${basename(get_terragrunt_dir())}-nic-1"
+  vm_name               = "${basename(get_terragrunt_dir())}-1"
+  vm_size               = "Standard_D16lds_v5"
+  os_disk_name          = "${basename(get_terragrunt_dir())}-os"
   image_publisher       = "Canonical"
   image_offer           = "UbuntuServer"
   image_sku             = "18.04-LTS"
   image_version         = "latest"
   admin_username        = "my-username"
-  admin_password = "mypass"
 }
 
