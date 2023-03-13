@@ -14,7 +14,7 @@ dependency "resource_groups" {
   config_path = "../../global/resource_groups"
 
   mock_outputs = {
-    vnet_resource_group_name = "rg-terragrunt-mock-001"
+    resource_group_name = "rg-terragrunt-mock-001"
   }
   mock_outputs_merge_strategy_with_state = true
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
@@ -30,7 +30,7 @@ locals {
 
 inputs = {
   vnet_name           = "vnet-spoke-${local.environment}-${local.location}-001"
-  resource_group_name = dependency.resource_groups.outputs.vnet_resource_group_name
+  resource_group_name = dependency.resource_groups.outputs.resource_group_name
   address_space       = ["10.1.0.0/16"]
   subnet_prefixes     = ["10.1.1.0/26", "10.1.2.0/24", "10.1.3.0/24", "10.1.4.0/24"]
   subnet_names        = ["AzureBastionSubnet", "Management", "Tools", "Workloads"]

@@ -7,6 +7,8 @@ variable "location" {
 }
 
 variable "tags" {
-  description = "A map of tags to apply to the Resource Group."
+  description = "Additional tags to apply to resources created by the module."
+  type        = map(string)
+  default     = {}
 }
 

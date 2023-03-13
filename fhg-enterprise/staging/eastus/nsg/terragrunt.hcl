@@ -14,7 +14,7 @@ dependency "resource_groups" {
   config_path = "../../global/resource_groups"
 
   mock_outputs = {
-    vnet_resource_group_name = "rg-terragrunt-mock-001"
+    resource_group_name = "rg-terragrunt-mock-001"
   }
   mock_outputs_merge_strategy_with_state = true
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
@@ -31,7 +31,7 @@ locals {
 inputs = {
   name               = "${local.environment}-${local.location}-nsg-001"
   location           = local.location
-  resource_group_name = dependency.resource_groups.outputs.vnet_resource_group_name
+  resource_group_name = dependency.resource_groups.outputs.resource_group_name
   security_rules = [
     {
       name                        = "DenyRemoteManagementInBound"
