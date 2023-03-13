@@ -7,7 +7,7 @@ include {
 }
 
 dependencies {
-  paths = ["../../global/resource_groups", "../nsg"]
+  paths = ["../../global/resource_groups", "../nsg-wap"]
 }
 
 dependency "resource_groups" {

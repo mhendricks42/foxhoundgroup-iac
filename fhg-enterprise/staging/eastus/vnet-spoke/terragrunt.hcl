@@ -7,7 +7,7 @@ include {
 }
 
 dependencies {
-  paths = ["../../global/resource_groups", "../nsg"]
+  paths = ["../../global/resource_groups", "../nsg-default"]
 }
 
 dependency "resource_groups" {
@@ -21,7 +21,7 @@ dependency "resource_groups" {
 }
 
 dependency "nsg" {
-  config_path = "../nsg"
+  config_path = "../nsg-default"
 
   mock_outputs = {
     nsg_id = "/mock/outputs/id/nsg-terragrunt-mock-001"
