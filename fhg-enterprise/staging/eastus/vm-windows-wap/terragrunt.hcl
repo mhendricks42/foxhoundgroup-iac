@@ -7,7 +7,7 @@ include {
 }
 
 dependencies {
-  paths = ["../../global/resource_groups","../spoke-vnet"]
+  paths = ["../../global/resource_groups","../vnet-dmz"]
 }
 
 dependency "resource_groups" {
