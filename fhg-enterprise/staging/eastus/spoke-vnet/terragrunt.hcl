@@ -24,7 +24,7 @@ dependency "nsg" {
   config_path = "../nsg"
 
   mock_outputs = {
-    nsg_name = "nsg-terragrunt-mock-001"
+    nsg_id = "/mock/outputs/id/nsg-terragrunt-mock-001"
   }
   mock_outputs_merge_strategy_with_state = "shallow"
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]
@@ -41,28 +41,28 @@ locals {
 inputs = {
   vnet_name               = "${local.environment}-${local.location}-vnet-spoke-001"
   resource_group_name     = dependency.resource_groups.outputs.resource_group_name
-  resource_group_location = local.location
+  location                = local.location
   vnet_address_space      = ["10.0.0.0/16"]
   subnets = {
     subnet1 = {
       name                      = "AzureBastionSubnet"
       address_prefix            = "10.0.1.0/26"
-      security_group            = dependency.nsg.outputs.nsg_name
+      security_group            = ""
     },
     subnet2 = {
       name                      = "Management"
       address_prefix            = "10.0.2.0/24"
-      security_group            = dependency.nsg.outputs.nsg_name
+      security_group            = dependency.nsg.outputs.nsg_id
     },
     subnet3 = {
       name                      = "Tools"
       address_prefix            = "10.0.3.0/24"
-      security_group            = dependency.nsg.outputs.nsg_name
+      security_group            = dependency.nsg.outputs.nsg_id
     },
     subnet4 = {
       name                      = "Workloads"
       address_prefix            = "10.0.4.0/24"
-      security_group            = dependency.nsg.outputs.nsg_name
+      security_group            = dependency.nsg.outputs.nsg_id
     }
   }
 }
