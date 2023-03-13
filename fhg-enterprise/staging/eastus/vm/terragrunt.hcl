@@ -1,6 +1,5 @@
-# example hcl
 terraform {
-  source = "git::https://github.com/example/azure-vm-module.git"
+  source = "${get_parent_terragrunt_dir()}/modules//azure-vm"
 }
 
 inputs = {
