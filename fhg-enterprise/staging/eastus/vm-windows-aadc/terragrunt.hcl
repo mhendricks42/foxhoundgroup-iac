@@ -21,11 +21,14 @@ dependency "resource_groups" {
 }
 
 dependency "spoke_vnet" {
-  config_path = "../spoke-vnet"
+  config_path = "../vnet-lan"
 
   mock_outputs = {
     vnet_name = "vnet-terragrunt-mock-001"
-    subnet_ids = ["/mock/outputs/id/vnet-terragrunt-mock-001","/mock/outputs/id/vnet-terragrunt-mock-002"]
+    subnet_ids = [
+      "/mock/outputs/id/vnet-terragrunt-mock-001",
+      "/mock/outputs/id/vnet-terragrunt-mock-002"
+      ]
   }
   mock_outputs_merge_strategy_with_state = "shallow"
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "output"]

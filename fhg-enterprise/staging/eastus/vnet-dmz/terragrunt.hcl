@@ -21,7 +21,7 @@ dependency "resource_groups" {
 }
 
 dependency "nsg" {
-  config_path = "../nsg"
+  config_path = "../nsg-wap"
 
   mock_outputs = {
     nsg_id = "/mock/outputs/id/nsg-terragrunt-mock-001"
@@ -39,7 +39,7 @@ locals {
 }
 
 inputs = {
-  vnet_name               = "${local.environment}-${local.location}-vnet-spoke-001"
+  vnet_name               = "${local.environment}-${local.location}-${basename(get_terragrunt_dir())}"
   resource_group_name     = dependency.resource_groups.outputs.resource_group_name
   location                = local.location
   vnet_address_space      = ["10.0.0.0/16"]
@@ -52,11 +52,6 @@ inputs = {
     subnet2 = {
       name                      = "Management"
       address_prefix            = "10.0.2.0/24"
-      security_group            = dependency.nsg.outputs.nsg_id
-    },
-    subnet3 = {
-      name                      = "Tools"
-      address_prefix            = "10.0.3.0/24"
       security_group            = dependency.nsg.outputs.nsg_id
     },
     subnet4 = {

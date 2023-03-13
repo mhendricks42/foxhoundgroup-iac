@@ -29,7 +29,7 @@ locals {
 }
 
 inputs = {
-  name               = "${local.environment}-${local.location}-nsg-001"
+  name               = "${local.environment}-${local.location}-${basename(get_terragrunt_dir())}-001"
   location           = local.location
   resource_group_name = dependency.resource_groups.outputs.resource_group_name
   security_rules = [
