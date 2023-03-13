@@ -3,19 +3,14 @@ variable "resource_group_name" {
   description = "Name of the resource group to create."
 }
 
-variable "resource_group_location" {
+variable "location" {
   type        = string
   description = "Location of the resource group."
 }
 
-variable "vnet_name" {
+variable "subnet_id" {
   type        = string
-  description = "Name of the virtual network."
-}
-
-variable "subnet_name" {
-  type        = string
-  description = "Name of the subnet."
+  description = "Id of the subnet."
 }
 
 variable "public_ip_name" {
