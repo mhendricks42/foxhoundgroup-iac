@@ -1,5 +1,5 @@
 terraform {
-  source = "${get_parent_terragrunt_dir()}/modules//azure-vnet"
+  source = "${get_parent_terragrunt_dir()}/modules//azure-resource-group"
 }
 
 include {
@@ -15,7 +15,7 @@ locals {
 }
 
 inputs = {
-  resource_group_name = "fhg-example-vnet"
+  resource_group_name = "fhg-${local.environment}"
   location            = local.location
   tags = {
     environment = local.environment
