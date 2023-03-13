@@ -27,7 +27,11 @@ resource "azurerm_virtual_machine" "example" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.example.id]
   vm_size               = var.vm_size
-
+  # Uncomment this line to delete the OS disk automatically when deleting the VM
+  delete_os_disk_on_termination = true
+  # Uncomment this line to delete the data disks automatically when deleting the VM
+  delete_data_disks_on_termination = true
+  
   storage_os_disk {
     name              = var.os_disk_name
     caching           = "ReadWrite"
