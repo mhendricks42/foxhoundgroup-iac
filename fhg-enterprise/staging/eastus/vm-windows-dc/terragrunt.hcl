@@ -7,7 +7,7 @@ include {
 }
 
 dependencies {
-  paths = ["../../global/resource_groups","../vnet-spoke"]
+  paths = ["../../global/resource_groups","../vnet-lan"]
 }
 
 dependency "resource_groups" {
@@ -21,7 +21,7 @@ dependency "resource_groups" {
 }
 
 dependency "spoke_vnet" {
-  config_path = "../vnet-spoke"
+  config_path = "../vnet-lan"
 
   mock_outputs = {
     vnet_name = "vnet-terragrunt-mock-001"

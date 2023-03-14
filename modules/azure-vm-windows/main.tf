@@ -52,8 +52,8 @@ resource "azurerm_virtual_machine" "example" {
     admin_password = var.admin_password
   }
 
-  os_profile_linux_config {
-    disable_password_authentication = false
+  os_profile_windows_config {
+    provision_vm_agent = true
   }
 }
 
