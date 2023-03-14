@@ -30,6 +30,7 @@ variable "vm_name" {
 
 variable "vm_size" {
   type        = string
+  default     = "Standard_B2s"
   description = "Size of the virtual machine."
 }
 
@@ -40,21 +41,25 @@ variable "os_disk_name" {
 
 variable "image_publisher" {
   type        = string
+  default     = "Canonical"
   description = "Publisher of the image used to create the virtual machine."
 }
 
 variable "image_offer" {
   type        = string
+  default     = "UbuntuServer"
   description = "Offer of the image used to create the virtual machine."
 }
 
 variable "image_sku" {
   type        = string
+  default     = "18.04-LTS"
   description = "SKU of the image used to create the virtual machine."
 }
 
 variable "image_version" {
   type        = string
+  default     = "latest"
   description = "Version of the image used to create the virtual machine."
 }
 

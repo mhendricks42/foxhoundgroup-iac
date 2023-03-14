@@ -50,12 +50,7 @@ inputs = {
   public_ip_name        = "${basename(get_terragrunt_dir())}-public-ip"
   nic_name              = "${basename(get_terragrunt_dir())}-nic-1"
   vm_name               = "${basename(get_terragrunt_dir())}"
-  vm_size               = "Standard_D16lds_v5"
   os_disk_name          = "${basename(get_terragrunt_dir())}-os"
-  image_publisher       = "MicrosoftWindowsServer"
-  image_offer           = "WindowsServer"
-  image_sku             = "2019-Datacenter"
-  image_version         = "latest"
   admin_username        = "my-username"
 }
 
