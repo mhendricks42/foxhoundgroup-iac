@@ -1,5 +1,5 @@
 terraform {
-  source = "${get_parent_terragrunt_dir()}/modules//azure-vm-linux"
+  source = "${get_parent_terragrunt_dir()}/modules//azure-vm-windows"
 }
 
 include {
@@ -7,7 +7,7 @@ include {
 }
 
 dependencies {
-  paths = ["../../global/resource_groups","../vnet-spoke"]
+  paths = ["../../global/resource_groups","../vnet-dmz"]
 }
 
 dependency "resource_groups" {
@@ -21,7 +21,7 @@ dependency "resource_groups" {
 }
 
 dependency "spoke_vnet" {
-  config_path = "../vnet-spoke"
+  config_path = "../vnet-dmz"
 
   mock_outputs = {
     vnet_name = "vnet-terragrunt-mock-001"
@@ -49,12 +49,12 @@ inputs = {
   subnet_id             = dependency.spoke_vnet.outputs.subnet_ids[1]
   public_ip_name        = "${basename(get_terragrunt_dir())}-public-ip"
   nic_name              = "${basename(get_terragrunt_dir())}-nic-1"
-  vm_name               = "${basename(get_terragrunt_dir())}-1"
+  vm_name               = "${basename(get_terragrunt_dir())}"
   vm_size               = "Standard_D16lds_v5"
   os_disk_name          = "${basename(get_terragrunt_dir())}-os"
-  image_publisher       = "Canonical"
-  image_offer           = "UbuntuServer"
-  image_sku             = "18.04-LTS"
+  image_publisher       = "MicrosoftWindowsServer"
+  image_offer           = "WindowsServer"
+  image_sku             = "2019-Datacenter"
   image_version         = "latest"
   admin_username        = "my-username"
 }
