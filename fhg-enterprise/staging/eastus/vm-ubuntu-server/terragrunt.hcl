@@ -1,5 +1,5 @@
 terraform {
-  source = "${get_parent_terragrunt_dir()}/modules//azure-vm"
+  source = "${get_parent_terragrunt_dir()}/modules//azure-vm-linux"
 }
 
 include {
